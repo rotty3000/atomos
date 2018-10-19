@@ -34,6 +34,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
+import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 
@@ -88,6 +89,9 @@ public class AtomosFrameworkFactoryTest {
 			assertEquals("Wrong bundle state for bundle: " + msg, expected, b.getState());
 
 		}
+		Bundle javaLang = FrameworkUtil.getBundle(String.class);
+		assertNotNull("No bundle found.", javaLang);
+		assertEquals("Wrong bundle name.", String.class.getModule().getName(), javaLang.getSymbolicName());
 	}
 
 	private String getState(Bundle b) {
