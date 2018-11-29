@@ -8,5 +8,10 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
+@aQute.bnd.annotation.loader.ServiceConsumer(value = FrameworkFactory.class, resolution = Resolution.OPTIONAL)
+@org.osgi.annotation.bundle.Export
 @org.osgi.annotation.versioning.Version("1.0.0")
 package org.atomos.framework;
+
+import org.osgi.annotation.bundle.Requirement.Resolution;
+import org.osgi.framework.launch.FrameworkFactory;

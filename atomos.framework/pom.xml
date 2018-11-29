@@ -28,6 +28,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>biz.aQute.bnd</groupId>
+			<artifactId>biz.aQute.bnd.annotation</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>osgi.annotation</artifactId>
 			<scope>provided</scope>
@@ -36,43 +41,23 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>biz.aQute.bnd</groupId>
+				<artifactId>bnd-maven-plugin</artifactId>
+				<configuration>
+					<bnd><![CDATA[
+					-module:
+					]]></bnd>
+				</configuration>
+			</plugin>
+			<plugin>
 				<!-- Build an executable JAR -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<archive>
-						<manifest>
-							<mainClass>org.atomos.framework.AtomosRuntime</mainClass>
-						</manifest>
+						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 					</archive>
 				</configuration>
-			</plugin>
-			<plugin>
-				<!--  work around until maven-jar-plugin supports main-class attribute for module-info.class -->
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<configuration>
-							<target>
-								<exec executable="${java.home}/bin/jar" failonerror="true">
-									<arg value="--main-class" />
-									<arg value="org.atomos.framework.AtomosRuntime" />
-									<arg value="--module-version" />
-									<arg value="0.0.1" />
-									<arg value="--update" />
-									<arg value="--file" />
-									<arg
-										value="${project.build.directory}/${project.artifactId}-${project.version}.jar" />
-								</exec>
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

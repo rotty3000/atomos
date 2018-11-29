@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.atomos.framework;
 
+import aQute.bnd.annotation.loader.ServiceConsumer;
+
 import java.io.File;
 import java.lang.module.Configuration;
 import java.lang.module.ResolvedModule;
@@ -20,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
 
+import org.osgi.annotation.bundle.Header;
+import org.osgi.annotation.bundle.Requirement.Resolution;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.Constants;
@@ -135,6 +139,8 @@ import org.osgi.framework.launch.FrameworkFactory;
  * system.bundle of the initialized framework will also have an AtomosRuntime
  * service registered with its bundle context.
  */
+@Header(name = "Main-Class", value = "${@class}")
+@ServiceConsumer(resolution = Resolution.OPTIONAL)
 public interface AtomosRuntime extends FrameworkFactory {
 	public enum LoaderType {
 		OSGI, SINGLE, MANY

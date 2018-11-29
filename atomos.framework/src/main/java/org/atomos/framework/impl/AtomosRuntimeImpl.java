@@ -58,6 +58,9 @@ import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 import org.osgi.framework.wiring.FrameworkWiring;
 
+import aQute.bnd.annotation.loader.ServiceProvider;
+
+@ServiceProvider(AtomosRuntime.class)
 public class AtomosRuntimeImpl implements AtomosRuntime, SynchronousBundleListener{
 	static final String JAR_PROTOCOL = "jar"; //$NON-NLS-1$
 	static final String FILE_PROTOCOL = "file"; //$NON-NLS-1$
