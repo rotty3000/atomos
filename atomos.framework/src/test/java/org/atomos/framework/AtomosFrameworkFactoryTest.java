@@ -67,7 +67,7 @@ public class AtomosFrameworkFactoryTest {
 		FrameworkFactory factory = factories.get(0);
 		assertNotNull("null factory.", factory);
 
-		Map<String, String> config = Map.of(Constants.FRAMEWORK_STORAGE, storage.toFile().getAbsolutePath());
+		Map<String, String> config = Map.of(Constants.FRAMEWORK_STORAGE, storage.toFile().getAbsolutePath(), "osgi.debug", "debug.options");
 		testFramework = factory.newFramework(config);
 		doTestFramework(testFramework);
 	}
@@ -75,7 +75,7 @@ public class AtomosFrameworkFactoryTest {
 	@Test
 	public void testRuntime() throws BundleException {
 		AtomosRuntime runtime = AtomosRuntime.newAtomosRuntime();
-		Map<String, String> config = Map.of(Constants.FRAMEWORK_STORAGE, storage.toFile().getAbsolutePath());
+		Map<String, String> config = Map.of(Constants.FRAMEWORK_STORAGE, storage.toFile().getAbsolutePath(), "osgi.debug", "debug.options");
 		testFramework = runtime.newFramework(config);
 		doTestFramework(testFramework);
 	}
