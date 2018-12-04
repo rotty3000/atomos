@@ -13,9 +13,11 @@ package org.atomos.service.image;
 import java.util.concurrent.TimeUnit;
 
 import org.atomos.framework.AtomosRuntime;
+import org.osgi.annotation.bundle.Header;
 import org.osgi.framework.BundleException;
 
-public class GogoConsole 
+@Header(name = "Main-Class", value = "${@class}")
+public class GogoConsole
 {
     public static void main( String[] args ) throws BundleException
     {
